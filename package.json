@@ -1,0 +1,20 @@
+{
+  "name": "smart_findreplace",
+  "version": "0.0.1",
+  "description": "Finds and replaces text in files with what you want based on RegExp match.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url" : ""
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "minimist": "latest",
+    "async": "^1.5.2"
+  },
+  "author": "Lance Whatley",
+  "license": "ISC"
+}

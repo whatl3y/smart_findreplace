@@ -1,0 +1,13 @@
+# ignore
+*.log
+*.DS_Store
+/EXTRAS
+/tests
+/logs
+/files
+/documentation
+/views/wikitemplates
+/views/emailtemplates
+/node_modules
+/.env_windows
+/.env_linux
