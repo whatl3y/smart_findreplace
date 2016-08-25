@@ -64,11 +64,15 @@ if (fileName) {
     },
     function(allValues,callback) {
       var newContent = allValues.sort().join('\n');
-      fs.writeFile(fileName + '_' + Date.now() + '.txt',newContent,callback)
+      var newFileName = fileName + '_' + Date.now() + '.txt';
+      fs.writeFile(newFileName,newContent,function(e) {
+        return callback(e,newFileName);
+      })
     }
   ],
-    function(err) {
-      console.log(err);
+    function(err,newFile) {
+      if (err) return console.log("ERROR",err)
+      return console.log("SUCCESS! New file located at:",newFile);
     }
   );
 } else {
