@@ -64,7 +64,7 @@ if (fileName) {
     },
     function(allValues,callback) {
       var newContent = allValues.sort().join('\n');
-      var newFileName = fileName + '_' + Date.now() + '.txt';
+      var newFileName = fileName + '_smart_findreplace_' + Date.now() + '.txt';
       fs.writeFile(newFileName,newContent,function(e) {
         return callback(e,newFileName);
       })

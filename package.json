@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url" : ""
+    "url" : "https://github.com/whatl3y/smart_findreplace.git"
   },
   "scripts": {
     "start": "node index.js",
