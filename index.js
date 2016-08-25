@@ -10,9 +10,8 @@ var replaceType = argv.t || argv.type || 'email';
 var onlyUnique = (argv.u || argv.unique || true) != 'false';
 
 var regExpMap = {
-  email: {
-    regexp: /([A-Z0-9._%+-]*\@[A-Z0-9._-]{1,15}\.[\w]{2,})/gi
-  }
+  email: /([A-Z0-9._%+-]*\@[A-Z0-9._-]{1,15}\.[\w]{2,})/gi,
+  phone: /\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})/gi
 }
 
 if (fileName) {
@@ -32,8 +31,8 @@ if (fileName) {
       var doesEmailExist = true;
       async.doUntil(function(_callback) {
         try {
-          if (regExpMap[replaceType].regexp.test(content)) {
-            var email = regExpMap[replaceType].regexp.exec(content);
+          if (regExpMap[replaceType].test(content)) {
+            var email = regExpMap[replaceType].exec(content);
             email = (email == null) ? email : email[0].toLowerCase();
 
             if (email != null) {
@@ -44,7 +43,7 @@ if (fileName) {
               doesEmailExist = false;
             }
 
-            content = content.substring(regexIndexOf(content,regExpMap[replaceType].regexp)+1);
+            content = content.substring(regexIndexOf(content,regExpMap[replaceType])+1);
             return _callback();
           }
 
@@ -64,7 +63,7 @@ if (fileName) {
     },
     function(allValues,callback) {
       var newContent = allValues.sort().join('\n');
-      var newFileName = fileName + '_smart_findreplace_' + Date.now() + '.txt';
+      var newFileName = fileName + '_smart_findreplace__' + replaceType + '___' + Date.now() + '.txt';
       fs.writeFile(newFileName,newContent,function(e) {
         return callback(e,newFileName);
       })
